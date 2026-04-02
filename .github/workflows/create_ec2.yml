@@ -11,7 +11,6 @@ on:
 jobs:
    create-ec2:
     runs-on: ubuntu-latest
-    
     steps:
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
