@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: create EC2 instance on AWS
+
+on:
+  push:
+    branches: [ "main" ]
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+   create-ec2:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          region: ${{secrets.AWS_REGION}}
+      - name: Launch EC2 Instance 
+      run: | 
+       aws ec2 run-instances \ 
+          --image-id ami-080254318c2d8932f \ 
+          --count 1 \ 
+          --instance-type t2.micro \ 
+          --key-name my-key-pair \ 
+          --security-group-ids sg-7c115413 \ 
+          --subnet-id subnet-71ab0a18
+
