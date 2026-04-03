@@ -22,7 +22,7 @@ jobs:
           aws ec2 run-instances \
             --image-id ami-080254318c2d8932f \
             --count 1 \
-            --instance-type t2.micro \
+            --instance-type t3.micro \
             --key-name my-key-pairs \
             --security-group-ids sg-7c115413 \
             --subnet-id subnet-71ab0a18
